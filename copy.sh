@@ -1,0 +1,12 @@
+#!/bin/bash
+cd ..
+cp -r baseweb $1
+cd $1
+rm -f copy.sh
+rm -rf .* 
+rm -rf target
+grep -rl "baseweb" --include="pom.xml" ./|xargs sed -i "" "s/baseweb/$1/g"
+cd src
+grep -rl "baseweb" --include="*" ./|xargs sed -i "" "s/baseweb/$1/g"
+cd main/java/
+mv baseweb $1
