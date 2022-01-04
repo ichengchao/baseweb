@@ -2,6 +2,7 @@ package baseweb.utils;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateParser;
@@ -17,14 +18,18 @@ public class DateFormatter {
 
     public final static String DEFAULT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     public final static String DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
+    public final static String UTC_DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     private static final DateParser DATE_PARSER = FastDateFormat.getInstance(DEFAULT_DATE_FORMAT);
     private static final DateParser DATETIME_PARSER = FastDateFormat.getInstance(DEFAULT_DATETIME_FORMAT);
+    private static final DateParser UTC_DATETIME_PARSER =
+        FastDateFormat.getInstance(UTC_DATE_TIME_FORMAT, TimeZone.getTimeZone("UTC"));
 
     public static void main(String[] args) {
         System.out.println(parseDate("2020-10-12"));
         System.out.println(parseDate("2020-10-01"));
         System.out.println(parseDateTime("2020-10-01 10:10:10"));
         System.out.println(parseDateTime("2020-10-02 23:10:10"));
+        System.out.println(parseUTCDateTime("2021-12-31T09:21:19Z"));
     }
 
     /**
@@ -54,6 +59,16 @@ public class DateFormatter {
         Assert.hasText(dateTimeString, "dateString can not be blank!");
         try {
             Date date = DATETIME_PARSER.parse(dateTimeString);
+            return date;
+        } catch (ParseException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public static Date parseUTCDateTime(String dateTimeString) {
+        Assert.hasText(dateTimeString, "dateString can not be blank!");
+        try {
+            Date date = UTC_DATETIME_PARSER.parse(dateTimeString);
             return date;
         } catch (ParseException e) {
             throw new RuntimeException(e.getMessage());
