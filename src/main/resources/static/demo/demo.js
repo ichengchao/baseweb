@@ -19,11 +19,15 @@ Ext.onReady(function () {
 
   var searchForm = Ext.create('Ext.form.Panel', {
     region: 'north',
-    frame: true,
-    height: 80,
-    bodyStyle: 'padding:15px 0px 0px 10px',
+    margin: '0 0 5 0',
+    frame: false,
+    height: 60,
+    bodyStyle: {
+      padding: '15px 0px 0px 10px',
+      background: 'rgb(223,233,246)'
+    },
     fieldDefaults: {
-      labelWidth: 30
+      labelWidth: 50
     },
     defaults: {
       width: 300
@@ -32,7 +36,7 @@ Ext.onReady(function () {
     buttonAlign: 'left',
     items: [{
       fieldLabel: '搜索',
-      width: 600,
+      width: 400,
       emptyText: 'name',
       name: 'simpleSearch',
       enableKeyEvents: true,
@@ -44,6 +48,12 @@ Ext.onReady(function () {
         }
       }
     }]
+    // buttons: [{
+    //   text: '重置',
+    //   handler: function () {
+    //     this.up('form').getForm().reset();
+    //   }
+    // }]
   });
 
   var userGrid = Ext.create('MyExt.Component.GridPanel', {
