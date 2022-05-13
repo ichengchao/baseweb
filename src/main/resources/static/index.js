@@ -11,9 +11,24 @@ Ext.onReady(function () {
                     expanded: true,
                     children: [
                         {
-                            text: "demo",
+                            text: "grid",
                             leaf: true,
-                            href: 'demo/demo.html',
+                            href: 'demo/grid.html',
+                            hrefTarget: 'mainFrame'
+                        }, {
+                            text: "component",
+                            leaf: true,
+                            href: 'demo/component.html',
+                            hrefTarget: 'mainFrame'
+                        }, {
+                            text: "message",
+                            leaf: true,
+                            href: 'demo/message.html',
+                            hrefTarget: 'mainFrame'
+                        }, {
+                            text: "layout",
+                            leaf: true,
+                            href: 'layout/layout.html',
                             hrefTarget: 'mainFrame'
                         }
                     ]
