@@ -50,7 +50,7 @@ Ext.onReady(function(){
          id: 'content-panel',
          region: 'center', // this is what makes this panel into a region within the containing layout
          layout: 'card',
-         margins: '2 5 5 0',
+         margins: '5 5 5 0',
          activeItem: 0,
          border: false,
          items: layoutExamples
@@ -119,7 +119,7 @@ Ext.onReady(function(){
             region:'west',
             border: false,
             split:true,
-            margins: '2 0 5 5',
+            margins: '5 0 5 0',
             width: 275,
             minSize: 100,
             maxSize: 500,
