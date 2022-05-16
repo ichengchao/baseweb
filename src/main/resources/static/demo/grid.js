@@ -9,6 +9,10 @@ Ext.onReady(function () {
     dataUrl: '../demo/searchDemo.do',
     rootFlag: 'data',
     pageSize: 200,
+    sorters: [{
+      property: 'name',
+      direction: 'DESC'
+    }],
     fields: ['id', 'name', 'comment']
   });
 
