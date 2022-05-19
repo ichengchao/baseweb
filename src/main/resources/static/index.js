@@ -6,7 +6,7 @@ Ext.onReady(function () {
             expanded: true,
             children: [
                 {
-                    text: "<font style='font-weight: bold;'>功能列表</font>",
+                    text: "<font style='font-weight: bold;'>Demo</font>",
                     iconCls: 'MyExt-menu-sub',
                     expanded: true,
                     children: [
@@ -15,20 +15,27 @@ Ext.onReady(function () {
                             leaf: true,
                             href: 'demo/grid.html',
                             hrefTarget: 'mainFrame'
-                        }, {
+                        }
+                    ]
+                }, {
+                    text: "<font style='font-weight: bold;'>Extjs</font>",
+                    iconCls: 'MyExt-menu-sub',
+                    expanded: true,
+                    children: [
+                        {
                             text: "component",
                             leaf: true,
-                            href: 'demo/component.html',
+                            href: 'extjs/component.html',
                             hrefTarget: 'mainFrame'
                         }, {
                             text: "message",
                             leaf: true,
-                            href: 'demo/message.html',
+                            href: 'extjs/message.html',
                             hrefTarget: 'mainFrame'
                         }, {
                             text: "layout",
                             leaf: true,
-                            href: 'layout/layout.html',
+                            href: 'extjs/layout/layout.html',
                             hrefTarget: 'mainFrame'
                         }
                     ]
