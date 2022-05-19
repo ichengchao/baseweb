@@ -83,4 +83,19 @@ public class DemoController extends BaseController {
         }
         outputToJSON(response, result);
     }
+
+    @RequestMapping("/batchDeleteDemo.do")
+    public void batchDeleteDemo(HttpServletRequest request, HttpServletResponse response) {
+        WebResult result = new WebResult();
+        try {
+            String idArray = request.getParameter("idArray");
+            List<Integer> idList = JsonUtils.parseArray(idArray, Integer.class);
+            demoService.batchDeleteDemo(idList);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            result.setSuccess(false);
+            result.setErrorMsg(e.getMessage());
+        }
+        outputToJSON(response, result);
+    }
 }

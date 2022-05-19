@@ -113,6 +113,30 @@ Ext.onReady(function () {
           });
         });
       }
+    }, {
+      text: '批量删除',
+      iconCls: 'MyExt-delete',
+      handler: function () {
+        var select = MyExt.util.SelectGridModel(userGrid, false);
+        if (!select) {
+          return;
+        }
+        let idArray = new Array();
+        let msg = "<hr>";
+        for (let i = 0; i < select.length; i++) {
+          idArray[i] = select[i].data["id"];
+          msg += select[i].data["name"] + "<br/>";
+        }
+
+        MyExt.util.MessageConfirm('是否确定删除' + msg, function () {
+          MyExt.util.Ajax('../demo/batchDeleteDemo.do', {
+            idArray: Ext.JSON.encode(idArray)
+          }, function (data) {
+            reload();
+            MyExt.Msg.alert('删除成功!');
+          });
+        });
+      }
     }]
   });
 

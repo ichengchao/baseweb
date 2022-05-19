@@ -68,4 +68,14 @@ public class DemoService {
         }
     }
 
+    public void batchDeleteDemo(List<Integer> idList) {
+        Assert.notNull(idList, "idList can not be null!");
+        for (Iterator<Demo> iterator = list.iterator(); iterator.hasNext();) {
+            Demo demo = iterator.next();
+            if (idList.contains(demo.getId())) {
+                iterator.remove();
+            }
+        }
+    }
+
 }
