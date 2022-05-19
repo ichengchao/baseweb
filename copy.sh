@@ -2,7 +2,8 @@
 cd ..
 cp -r baseweb $1
 cd $1
-rm -rf copy.sh target .* 
+rm -rf copy.sh target .*
+cp ../baseweb/.gitignore ./
 if [ "$(uname)" = "Darwin" ]; then
     echo "mac"
     grep -rl "baseweb" --include="pom.xml" ./|xargs sed -i "" "s/baseweb/$1/g"
