@@ -10,7 +10,7 @@ Ext.onReady(function () {
     rootFlag: 'data',
     pageSize: 200,
     sorters: [{
-      property: 'name',
+      property: 'id',
       direction: 'DESC'
     }],
     fields: ['id', 'name', 'comment']

@@ -11,8 +11,10 @@ public class Page {
 
     private Integer start;
     private Integer limit;
-
     private Integer total;
+
+    private String sort;
+    private String dir;
 
     public Page(Integer start, Integer limit) {
         super();
@@ -22,9 +24,22 @@ public class Page {
         this.limit = limit;
     }
 
+    public Page(Integer start, Integer limit, String sort, String dir) {
+        super();
+        Assert.notNull(start, "start can not be null!");
+        Assert.notNull(limit, "limit can not be null!");
+        Assert.hasText(sort, "sort can not be null!");
+        Assert.hasText(dir, "dir can not be null!");
+        this.start = start;
+        this.limit = limit;
+        this.sort = sort;
+        this.dir = dir;
+    }
+
     @Override
     public String toString() {
-        return "Page [start=" + start + ", limit=" + limit + ", total=" + total + "]";
+        return "Page [start=" + start + ", limit=" + limit + ", total=" + total + ", sort=" + sort + ", dir=" + dir
+                + "]";
     }
 
     public Integer getStart() {
@@ -49,6 +64,22 @@ public class Page {
 
     public void setTotal(Integer total) {
         this.total = total;
+    }
+
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 
 }
