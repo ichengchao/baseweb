@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -25,7 +26,7 @@ public class DemoService {
             Demo demo = new Demo();
             demo.setId(id);
             demo.setName("name_" + id);
-            demo.setComment("comment_" + id);
+            demo.setComment(RandomStringUtils.randomAlphabetic(10));
             list.add(demo);
         }
     }
@@ -41,14 +42,35 @@ public class DemoService {
         // 排序
         if (null != page) {
             if (StringUtils.isNotBlank(page.getSort())) {
-                Collections.sort(result, new Comparator<Demo>() {
+                if ("name".equalsIgnoreCase(page.getSort())) {
+                    Collections.sort(result, new Comparator<Demo>() {
 
-                    @Override
-                    public int compare(Demo o1, Demo o2) {
-                        return o1.getId().compareTo(o2.getId());
-                    }
+                        @Override
+                        public int compare(Demo o1, Demo o2) {
+                            return o1.getName().compareTo(o2.getName());
+                        }
 
-                });
+                    });
+                } else if ("comment".equalsIgnoreCase(page.getSort())) {
+                    Collections.sort(result, new Comparator<Demo>() {
+
+                        @Override
+                        public int compare(Demo o1, Demo o2) {
+                            return o1.getComment().compareTo(o2.getComment());
+                        }
+
+                    });
+                } else if ("id".equalsIgnoreCase(page.getSort())) {
+                    Collections.sort(result, new Comparator<Demo>() {
+
+                        @Override
+                        public int compare(Demo o1, Demo o2) {
+                            return o1.getId().compareTo(o2.getId());
+                        }
+
+                    });
+                }
+
             }
             if ("DESC".equalsIgnoreCase(page.getDir())) {
                 Collections.reverse(result);
