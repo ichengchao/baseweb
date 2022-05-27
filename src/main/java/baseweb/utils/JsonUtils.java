@@ -83,6 +83,10 @@ public class JsonUtils {
         return toJsonString(object, fastjson_serializeConfig_time, fastJsonFeaturesForWeb);
     }
 
+    public static String toJsonStringDefault(Object object) {
+        return JSON.toJSONString(object);
+    }
+
     public static List<Map<String, String>> toListMap(String jsonString) {
         List<Map<String, String>> listMap =
             JSONObject.parseObject(jsonString, new TypeReference<List<Map<String, String>>>() {});

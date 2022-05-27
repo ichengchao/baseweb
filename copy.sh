@@ -17,7 +17,7 @@ elif [ "$(uname)" = "Linux" ]; then
     cd src
     grep -rl "baseweb" --include="*" ./|xargs sed -i "s/baseweb/$1/g"
 fi
-cd main/java/
-mv baseweb $1
-cd $1
-mv MyApplication.java My_$1_Application.java
+
+mv main/java/baseweb/MyApplication.java main/java/baseweb/My_$1_Application.java
+mv main/java/baseweb main/java/$1
+mv test/java/baseweb test/java/$1
