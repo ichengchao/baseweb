@@ -52,7 +52,7 @@ public class SystemController extends BaseController implements InitializingBean
 				System.out.println("[Header] " + headerName + " : " + request.getHeader(headerName));
 			}
 			System.out.println("====================QueryString=================");
-			System.out.println(JsonUtils.toJsonString(request.getQueryString()));
+			System.out.println(request.getQueryString());
 			System.out.println("====================Body========================");
 			String characterEncoding = request.getCharacterEncoding();
 			Charset charset = Charset.forName(characterEncoding);
