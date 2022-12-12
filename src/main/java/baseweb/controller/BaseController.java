@@ -1,10 +1,10 @@
 package baseweb.controller;
 
-import javax.servlet.http.HttpServletResponse;
-
-import baseweb.utils.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import baseweb.utils.JsonUtils;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class BaseController {
 
