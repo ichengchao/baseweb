@@ -1,37 +1,34 @@
 package baseweb.utils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
-import com.alibaba.fastjson.serializer.SerializeConfig;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
-import org.apache.commons.lang3.StringUtils;
-
 import java.lang.reflect.Type;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.TypeReference;
+
 public class JsonUtils {
 
-    // fastjson 的序列化配置
-    public static final SerializeConfig fastjson_serializeConfig_noYear = new SerializeConfig();
-    public static final SerializeConfig fastjson_serializeConfig_time = new SerializeConfig();
-    public static final SerializeConfig fastjson_free_datetime = new SerializeConfig();
-
-    // 默认打出所有属性(即使属性值为null)|属性排序输出,为了配合历史记录
-    private static final SerializerFeature[] fastJsonFeatures = {SerializerFeature.WriteMapNullValue,
-        SerializerFeature.WriteEnumUsingToString, SerializerFeature.SortField,
-        SerializerFeature.DisableCircularReferenceDetect};
-
-    private static final SerializerFeature[] fastJsonFeaturesForWeb = {SerializerFeature.WriteMapNullValue,
-        SerializerFeature.WriteEnumUsingToString, SerializerFeature.SortField,
-        SerializerFeature.DisableCircularReferenceDetect};
-
-    static {
-        fastjson_serializeConfig_time.put(Date.class, new SimpleDateFormatSerializer("yyyy-MM-dd HH:mm:ss"));
-    }
+    // // fastjson 的序列化配置
+    // public static final SerializeConfig fastjson_serializeConfig_noYear = new SerializeConfig();
+    // public static final SerializeConfig fastjson_serializeConfig_time = new SerializeConfig();
+    // public static final SerializeConfig fastjson_free_datetime = new SerializeConfig();
+    //
+    // // 默认打出所有属性(即使属性值为null)|属性排序输出,为了配合历史记录
+    // private static final SerializerFeature[] fastJsonFeatures = {SerializerFeature.WriteMapNullValue,
+    // SerializerFeature.WriteEnumUsingToString, SerializerFeature.SortField,
+    // SerializerFeature.DisableCircularReferenceDetect};
+    //
+    // private static final SerializerFeature[] fastJsonFeaturesForWeb = {SerializerFeature.WriteMapNullValue,
+    // SerializerFeature.WriteEnumUsingToString, SerializerFeature.SortField,
+    // SerializerFeature.DisableCircularReferenceDetect};
+    //
+    // static {
+    // fastjson_serializeConfig_time.put(Date.class, new SimpleDateFormatSerializer("yyyy-MM-dd HH:mm:ss"));
+    // }
 
     @SuppressWarnings("unchecked")
     public static final <T> T parseObject(String input, Type clazz) {
@@ -72,15 +69,15 @@ public class JsonUtils {
     }
 
     public static String toJsonString(Object object) {
-        return toJsonString(object, fastjson_serializeConfig_noYear, fastJsonFeatures);
+        return _toJsonString(object);
     }
 
     public static String toJsonStringWithDatetime(Object object) {
-        return toJsonString(object, fastjson_serializeConfig_time, fastJsonFeatures);
+        return _toJsonString(object);
     }
 
     public static String toJsonStringForWeb(Object object) {
-        return toJsonString(object, fastjson_serializeConfig_time, fastJsonFeaturesForWeb);
+        return _toJsonString(object);
     }
 
     public static String toJsonStringDefault(Object object) {
@@ -93,10 +90,11 @@ public class JsonUtils {
         return listMap;
     }
 
-    private static String toJsonString(Object object, SerializeConfig serializeConfig, SerializerFeature[] features) {
+    private static String _toJsonString(Object object) {
         if (null == object) {
             return "";
         }
-        return JSON.toJSONString(object, serializeConfig, features);
+        return JSON.toJSONString(object);
     }
+
 }
