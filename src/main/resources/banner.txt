@@ -3,4 +3,4 @@ ${AnsiColor.GREEN}
                        baseweb  
 ====================================================
 springboot verison: ${spring-boot.formatted-version}
-
+java version: ${java.version}
