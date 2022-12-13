@@ -1,2 +1,7 @@
-打包
+# 打包
 mvn clean -Pnative native:compile
+
+# 改造点
+1. 切面不生效
+2. fastjson 切换成graalvm版本
+3. 增加@ReflectionHint的annotation
