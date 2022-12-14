@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
+import okhttp3.FormBody;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
@@ -62,6 +63,13 @@ public class OkHttpClientUtils {
         return result;
     }
 
+    public static String post(String url, Map<String, String> headerMap, Map<String, String> formBody)
+        throws Exception {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(url).newBuilder();
+        String result = excute(httpUrl.build(), HttpMethod.POST, headerMap, formBody);
+        return result;
+    }
+
     public static String put(String url, Map<String, String> headerMap, String jsonBody)
         throws Exception {
         HttpUrl.Builder httpUrl = HttpUrl.parse(url).newBuilder();
@@ -83,7 +91,8 @@ public class OkHttpClientUtils {
         return result;
     }
 
-    public static String excute(HttpUrl httpUrl, HttpMethod method, Map<String, String> headerMap, String body)
+    @SuppressWarnings("unchecked")
+    public static String excute(HttpUrl httpUrl, HttpMethod method, Map<String, String> headerMap, Object body)
         throws Exception {
         Headers.Builder headers = new Headers.Builder();
         if (null != headerMap && !headerMap.isEmpty()) {
@@ -94,7 +103,17 @@ public class OkHttpClientUtils {
         }
         RequestBody requestBody = null;
         if (null != body) {
-            requestBody = RequestBody.create(body, MediaType_JSON);
+            if (body instanceof String) {
+                String bodyString = (String)body;
+                requestBody = RequestBody.create(bodyString, MediaType_JSON);
+            } else if (body instanceof HashMap) {
+                Map<String, String> bodyMap = (Map<String, String>)body;
+                FormBody.Builder formBody = new FormBody.Builder();
+                for (Map.Entry<String, String> entry : bodyMap.entrySet()) {
+                    formBody.add(entry.getKey(), entry.getValue());
+                }
+                requestBody = formBody.build();
+            }
         }
         Request request = new Request(httpUrl, method.toString(), headers.build(), requestBody, new HashMap<>());
         Call call = client.newCall(request);
