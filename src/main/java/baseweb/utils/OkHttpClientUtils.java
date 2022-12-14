@@ -27,6 +27,7 @@ public class OkHttpClientUtils {
         .connectTimeout(10, TimeUnit.SECONDS)
         .writeTimeout(10, TimeUnit.SECONDS)
         .readTimeout(20, TimeUnit.SECONDS)
+        .callTimeout(60, TimeUnit.SECONDS)
         .build();
 
     public static enum HttpMethod {
