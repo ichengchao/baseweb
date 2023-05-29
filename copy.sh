@@ -1,4 +1,12 @@
 #!/bin/bash
+set -e
+
+# Check if directory and name parameters are set
+if [ -z "$1" ]; then
+    echo "Usage: $0 <directory-name>"
+    exit 1
+fi
+
 cd ..
 cp -r baseweb $1
 cd $1
