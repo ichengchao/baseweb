@@ -44,6 +44,18 @@ Ext.onReady(function () {
                             hrefTarget: 'mainFrame'
                         }
                     ]
+                }, {
+                    text: "<font style='font-weight: bold;'>Bootstrap</font>",
+                    iconCls: 'MyExt-menu-sub',
+                    expanded: true,
+                    children: [
+                        {
+                            text: "layout",
+                            leaf: true,
+                            href: 'bootstrap/boot_index.html',
+                            hrefTarget: 'mainFrame'
+                        }
+                    ]
                 }
             ]
         }
