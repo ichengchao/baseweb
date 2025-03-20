@@ -26,7 +26,7 @@ public class DemoService {
 			Demo demo = new Demo();
 			demo.setId(id);
 			demo.setName("name_" + i);
-			demo.setComment(RandomStringUtils.randomAlphabetic(10));
+			demo.setComment(RandomStringUtils. secure().nextAlphabetic(10));
 			map.put(id, demo);
 		}
 	}
