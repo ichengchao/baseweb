@@ -16,11 +16,6 @@ Ext.onReady(function () {
                             href: 'demo/grid.html',
                             hrefTarget: 'mainFrame'
                         }, {
-                            text: "Bootstrap Grid",
-                            leaf: true,
-                            href: 'demo/newgrid.html',
-                            hrefTarget: 'mainFrame'
-                        }, {
                             text: "grid paging",
                             leaf: true,
                             href: 'demo/grid_paging.html',
